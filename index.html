@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CalcuBit, ecommerce gamer académico desarrollado con HTML semántico, BEM, Sass y JavaScript.">
+  <title>CalcuBit | Videojuegos, consolas y accesorios</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__top shell">
+      <a class="site-header__brand" href="#inicio"><img src="assets/img/logo.svg" alt="CalcuBit"></a>
+
+      <form class="search" id="searchForm" role="search">
+        <select class="search__select" aria-label="Categoría">
+          <option>Todo</option>
+          <option>Videojuegos</option>
+          <option>Consolas</option>
+          <option>Accesorios</option>
+        </select>
+        <input class="search__input" id="headerSearch" type="search" placeholder="Buscar en CalcuBit..." autocomplete="off">
+        <button class="search__button" type="submit">Buscar</button>
+      </form>
+
+      <div class="site-header__actions">
+        <button class="icon-action" type="button" id="menuOpen" aria-label="Abrir menú">☰</button>
+        <button class="icon-action icon-action--cart" type="button" id="cartOpen" aria-label="Abrir carrito">🛒 <span class="icon-action__badge" id="cartBadge">0</span></button>
+      </div>
+    </div>
+
+    <nav class="main-nav" aria-label="Navegación principal">
+      <div class="main-nav__inner shell">
+        <a href="#productos" data-filter-link="todos">Catálogo</a>
+        <a href="#productos" data-filter-link="videojuegos">Videojuegos</a>
+        <a href="#productos" data-filter-link="consolas">Consolas</a>
+        <a href="#productos" data-filter-link="accesorios">Accesorios</a>
+        <a href="#productos" data-filter-link="coleccionables">Coleccionables</a>
+        <a href="#ofertas">Ofertas</a>
+      </div>
+    </nav>
+  </header>
+
+  <aside class="drawer drawer--menu" id="sideMenu" aria-hidden="true">
+    <div class="drawer__head">
+      <img class="drawer__logo" src="assets/img/logo.svg" alt="CalcuBit">
+      <button class="drawer__close" id="menuClose" type="button" aria-label="Cerrar menú">×</button>
+    </div>
+    <nav class="drawer__nav">
+      <a href="#productos" data-filter-link="videojuegos">Videojuegos</a>
+      <a href="#productos" data-filter-link="consolas">Consolas</a>
+      <a href="#productos" data-filter-link="accesorios">Accesorios</a>
+      <a href="#productos" data-filter-link="coleccionables">Coleccionables</a>
+    </nav>
+  </aside>
+
+  <aside class="drawer drawer--cart" id="cart" aria-hidden="true">
+    <div class="drawer__head">
+      <div><span class="drawer__eyebrow">TU COMPRA</span><h2 class="drawer__title">Carrito</h2></div>
+      <button class="drawer__close" id="cartClose" type="button" aria-label="Cerrar carrito">×</button>
+    </div>
+    <div class="cart__items" id="cartItems"></div>
+    <div class="cart__summary">
+      <div><span>Total</span><strong id="cartTotal">$0</strong></div>
+      <button class="button button--wide" id="checkoutButton" type="button">Finalizar compra</button>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay" hidden></div>
+
+  <main>
+    <section class="hero" id="inicio" aria-label="Promociones principales">
+      <div class="hero__slides" id="heroSlides">
+        <article class="hero__slide is-active" style="--hero:url('../assets/img/banner-ps5.jpg')">
+          <div class="hero__shade"></div>
+          <div class="hero__content shell">
+            <p class="hero__eyebrow">NUEVA GENERACIÓN</p>
+            <h1>Haz espacio para lo que sigue.</h1>
+            <p>Consolas, controles y accesorios para jugar como quieres.</p>
+            <div class="hero__actions">
+              <a class="button" href="#productos" data-filter-link="consolas">Ver consolas</a>
+              <a class="button button--ghost" href="#productos">Ver catálogo</a>
+            </div>
+          </div>
+        </article>
+        <article class="hero__slide" style="--hero:url('../assets/img/banner-xbox.jpg')">
+          <div class="hero__shade"></div>
+          <div class="hero__content shell">
+            <p class="hero__eyebrow">POTENCIA Y VELOCIDAD</p>
+            <h2>Tu setup empieza aquí.</h2>
+            <p>Encuentra el hardware y los accesorios para tu próxima partida.</p>
+            <a class="button" href="#productos" data-filter-link="accesorios">Explorar accesorios</a>
+          </div>
+        </article>
+        <article class="hero__slide" style="--hero:url('../assets/img/banner-switch.jpg')">
+          <div class="hero__shade"></div>
+          <div class="hero__content shell">
+            <p class="hero__eyebrow">EDICIONES ESPECIALES</p>
+            <h2>Juega. Colecciona. Repite.</h2>
+            <p>Ediciones, figuras y piezas para fans de verdad.</p>
+            <a class="button" href="#productos" data-filter-link="coleccionables">Ver colección</a>
+          </div>
+        </article>
+      </div>
+      <button class="hero__arrow hero__arrow--prev" id="heroPrev" type="button" aria-label="Anterior">‹</button>
+      <button class="hero__arrow hero__arrow--next" id="heroNext" type="button" aria-label="Siguiente">›</button>
+      <div class="hero__dots" id="heroDots"></div>
+    </section>
+
+    <section class="preorders section shell">
+      <div class="section__heading section__heading--row">
+        <div><span class="section__kicker">SELECCIÓN CALCUBIT</span><h2>Productos destacados</h2></div>
+        <a href="#productos">Ver todo</a>
+      </div>
+      <div class="preorders__rail">
+        <article class="poster-card"><img src="assets/img/nintendo-switch-2.jpg" alt="Nintendo Switch 2 con Mario Kart World"><div class="poster-card__body"><span>Consola</span><h3>Nintendo Switch 2 + Mario Kart World</h3><strong>$12,999</strong><button class="button button--small product-add" data-id="c-switch2" data-name="Nintendo Switch 2 + Mario Kart World" data-price="12999" data-image="assets/img/nintendo-switch-2.jpg">Agregar</button></div></article>
+        <article class="poster-card"><img src="assets/img/ps5-slim-bundle.webp" alt="PlayStation 5 Slim bundle Astro Bot y Gran Turismo 7"><div class="poster-card__body"><span>Consola</span><h3>PlayStation 5 Slim Bundle</h3><strong>$13,499</strong><button class="button button--small product-add" data-id="c-ps5" data-name="PlayStation 5 Slim Bundle" data-price="13499" data-image="assets/img/ps5-slim-bundle.webp">Agregar</button></div></article>
+        <article class="poster-card poster-card--featured"><img src="assets/img/lego-star-wars-k2so.webp" alt="LEGO Star Wars K-2SO"><div class="poster-card__body"><span>Coleccionable</span><h3>LEGO Star Wars K-2SO</h3><strong>$2,799</strong><button class="button button--small product-add" data-id="col-lego" data-name="LEGO Star Wars K-2SO" data-price="2799" data-image="assets/img/lego-star-wars-k2so.webp">Agregar</button></div></article>
+        <article class="poster-card"><img src="assets/img/et-figura.jpg" alt="Figura de E.T. con sudadera roja"><div class="poster-card__body"><span>Coleccionable</span><h3>Figura E.T. Retro</h3><strong>$899</strong><button class="button button--small product-add" data-id="col-et" data-name="Figura E.T. Retro" data-price="899" data-image="assets/img/et-figura.jpg">Agregar</button></div></article>
+      </div>
+    </section>
+
+    <section class="catalog section shell" id="productos">
+      <div class="section__heading section__heading--row">
+        <div><span class="section__kicker">CATÁLOGO</span><h2>Consolas y coleccionables</h2></div>
+        <div class="filters" role="group" aria-label="Filtrar productos">
+          <button class="filters__button is-active" data-filter="todos" type="button">Todos</button>
+          <button class="filters__button" data-filter="consolas" type="button">Consolas</button>
+          <button class="filters__button" data-filter="coleccionables" type="button">Coleccionables</button>
+        </div>
+      </div>
+      <div class="catalog__grid" id="productGrid">
+        <article class="product-card" data-category="consolas" data-platform="nintendo" data-name="Nintendo Switch 2 Mario Kart World"><img src="assets/img/nintendo-switch-2.jpg" alt="Nintendo Switch 2 con Mario Kart World"><div class="product-card__body"><span>CONSOLAS</span><h3>Nintendo Switch 2 + Mario Kart World</h3><p>$12,999</p><button class="button button--small product-add" data-id="p-switch2" data-name="Nintendo Switch 2 + Mario Kart World" data-price="12999" data-image="assets/img/nintendo-switch-2.jpg">Agregar</button></div></article>
+        <article class="product-card" data-category="consolas" data-platform="xbox" data-name="Xbox One X PUBG Bundle"><img src="assets/img/xbox-one-x-pubg.jpg" alt="Xbox One X bundle PUBG"><div class="product-card__body"><span>CONSOLAS</span><h3>Xbox One X + PUBG Bundle</h3><p>$8,999</p><button class="button button--small product-add" data-id="p-xbox" data-name="Xbox One X + PUBG Bundle" data-price="8999" data-image="assets/img/xbox-one-x-pubg.jpg">Agregar</button></div></article>
+        <article class="product-card" data-category="consolas" data-platform="playstation" data-name="PlayStation 5 Slim Astro Bot Gran Turismo 7"><img src="assets/img/ps5-slim-bundle.webp" alt="PlayStation 5 Slim bundle Astro Bot y Gran Turismo 7"><div class="product-card__body"><span>CONSOLAS</span><h3>PlayStation 5 Slim Bundle</h3><p>$13,499</p><button class="button button--small product-add" data-id="p-ps5" data-name="PlayStation 5 Slim Bundle" data-price="13499" data-image="assets/img/ps5-slim-bundle.webp">Agregar</button></div></article>
+        <article class="product-card" data-category="coleccionables" data-platform="multi" data-name="LEGO Star Wars K-2SO"><img src="assets/img/lego-star-wars-k2so.webp" alt="LEGO Star Wars K-2SO"><div class="product-card__body"><span>COLECCIONABLES</span><h3>LEGO Star Wars K-2SO</h3><p>$2,799</p><button class="button button--small product-add" data-id="p-lego" data-name="LEGO Star Wars K-2SO" data-price="2799" data-image="assets/img/lego-star-wars-k2so.webp">Agregar</button></div></article>
+        <article class="product-card" data-category="coleccionables" data-platform="multi" data-name="Star Trek Figuras Coleccionables"><img src="assets/img/star-trek-figuras.webp" alt="Set de figuras Star Trek"><div class="product-card__body"><span>COLECCIONABLES</span><h3>Star Trek Figure Collection</h3><p>$1,199</p><button class="button button--small product-add" data-id="p-startrek" data-name="Star Trek Figure Collection" data-price="1199" data-image="assets/img/star-trek-figuras.webp">Agregar</button></div></article>
+        <article class="product-card" data-category="coleccionables" data-platform="multi" data-name="Figura ET Retro"><img src="assets/img/et-figura.jpg" alt="Figura E.T. con sudadera roja"><div class="product-card__body"><span>COLECCIONABLES</span><h3>Figura E.T. Retro</h3><p>$899</p><button class="button button--small product-add" data-id="p-et" data-name="Figura E.T. Retro" data-price="899" data-image="assets/img/et-figura.jpg">Agregar</button></div></article>
+      </div>
+      <p class="catalog__empty" id="emptyState" hidden>No encontramos productos con esa búsqueda.</p>
+    </section>
+
+    <section class="platform" id="plataformas">
+      <div class="platform__inner shell">
+        <div class="platform__copy">
+          <span class="section__kicker">JUEGA DONDE QUIERAS</span>
+          <h2>Compra por plataforma</h2>
+          <p>Encuentra consolas y productos para tu ecosistema favorito. Selecciona una plataforma para ir directo al catálogo.</p>
+        </div>
+
+        <div class="platform__cards">
+          <article class="platform-card" data-platform-link="playstation" tabindex="0">
+            <div class="platform-card__media">
+              <img src="assets/img/platform-playstation.webp" alt="PlayStation">
+            </div>
+            <div class="platform-card__body">
+              <h3>PlayStation</h3>
+              <p>Consolas y juegos</p>
+              <button class="platform-card__button" type="button">Ver productos</button>
+            </div>
+          </article>
+
+          <article class="platform-card" data-platform-link="xbox" tabindex="0">
+            <div class="platform-card__media">
+              <img src="assets/img/platform-xbox.webp" alt="Xbox">
+            </div>
+            <div class="platform-card__body">
+              <h3>Xbox</h3>
+              <p>Consolas y accesorios</p>
+              <button class="platform-card__button" type="button">Ver productos</button>
+            </div>
+          </article>
+
+          <article class="platform-card" data-platform-link="nintendo" tabindex="0">
+            <div class="platform-card__media">
+              <img src="assets/img/platform-nintendo.png" alt="Nintendo Switch">
+            </div>
+            <div class="platform-card__body">
+              <h3>Nintendo</h3>
+              <p>Consolas y coleccionables</p>
+              <button class="platform-card__button" type="button">Ver productos</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="promo">
+      <div class="promo__inner shell"><div class="promo__art"><img src="assets/img/et-figura.jpg" alt="Figura E.T. Retro destacada"></div><div class="promo__copy"><span class="section__kicker">COLECCIONA MÁS</span><h2>Gaming fuera de la pantalla.</h2><p>Figuras, peluches y piezas para darle personalidad a tu espacio gamer.</p><a class="button" href="#productos" data-filter-link="coleccionables">Ver coleccionables</a></div></div>
+    </section>
+
+    <section class="community"><div class="community__inner shell"><span>▲</span><div><small>¿TE GUSTAN LOS VIDEOJUEGOS?</small><h2>Conecta con CalcuBit</h2><p>@calcubit · noticias · lanzamientos · comunidad</p></div><span>○</span></div></section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid shell"><div><img class="footer__logo" src="assets/img/logo.svg" alt="CalcuBit"><p>Tu tienda gamer para descubrir, jugar y coleccionar.</p></div><div><h3>Tienda</h3><a href="#productos">Videojuegos</a><a href="#productos">Consolas</a><a href="#productos">Accesorios</a></div><div><h3>Ayuda</h3><a href="#">Preguntas frecuentes</a><a href="#">Contacto</a><a href="#">Envíos</a></div><div><h3>CalcuBit</h3><a href="#">Nosotros</a><a href="#">Privacidad</a><a href="#">Términos</a></div></div>
+    <div class="footer__bottom shell"><span>Proyecto académico EBAC · 2026</span><span>HTML · BEM · Sass · JavaScript</span></div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

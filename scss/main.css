@@ -1,0 +1,109 @@
+body {
+  background: #1f2229;
+  color: #f5f7fb;
+}
+
+.button {
+  background: #ef3340;
+}
+
+@media (max-width: 900px) {
+  .main-nav {
+    display: none;
+  }
+}
+@media (max-width: 620px) {
+  .catalog__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.product-card {
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+.product-card img {
+  transition: transform 0.28s ease;
+}
+.product-card.is-hovered {
+  transform: translateY(-7px);
+  border-color: #596576;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+}
+.product-card.is-hovered img {
+  transform: scale(1.035);
+}
+.product-card.is-hovered .button--small {
+  filter: brightness(1.1);
+}
+
+.poster-card {
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+.poster-card img {
+  transition: transform 0.28s ease;
+}
+.poster-card.is-hovered {
+  transform: translateY(-6px);
+  border-color: #596576;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+}
+.poster-card.is-hovered img {
+  transform: scale(1.035);
+}
+.poster-card.is-hovered .button--small {
+  filter: brightness(1.1);
+}
+.poster-card--featured.is-hovered {
+  transform: translateY(-18px);
+}
+
+.platform-card {
+  overflow: hidden;
+  background: #11151b;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+.platform-card:hover, .platform-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 15px 32px rgba(0, 0, 0, 0.28);
+}
+.platform-card__media {
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #0d1015;
+}
+.platform-card__media img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.platform-card__body {
+  padding: 14px;
+}
+.platform-card__body h3 {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+.platform-card__body p {
+  margin: 0 0 14px;
+  color: #c7cfdb;
+  font-size: 13px;
+}
+.platform-card__button {
+  width: 100%;
+  min-height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+.platform-card__button:hover {
+  background: #fff;
+  color: #15181e;
+}/*# sourceMappingURL=main.css.map */
